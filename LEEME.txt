@@ -16,14 +16,13 @@
     pip install -r requirements.txt
 
 
-2️⃣  Entrenar la red neuronal:
-    
-    python train_network.py
-
-
-3️⃣  Ejecutar el juego:
+2️⃣  Ejecutar el juego:
     
     python main.py
+
+    (Opcional) Entrenar red neuronal con tus datos:
+    
+    python train_network.py
 
 
 ═══════════════════════════════════════════════════════════════
@@ -33,7 +32,7 @@
 En el menú principal:
 
   [1] - Modo MANUAL (controlas con flechas del teclado)
-  [2] - Modo DIFUSO (IA con lógica fuzzy)
+  [2] - Modo DIFUSO (IA con lógica híbrida)
   [3] - Modo RED NEURONAL (IA con deep learning)
   
   [ESC] - Salir
@@ -46,6 +45,8 @@ Durante la carrera:
     ↓ - Frenar
     ← - Izquierda
     → - Derecha
+    📹 Grabación automática: Se inicia al comenzar
+       y se guarda al llegar a la meta
 
   Todos los modos:
     [S] - Mostrar sensores
@@ -53,34 +54,39 @@ Durante la carrera:
     [ESC] - Menú
 
 
-Objetivo: ¡Completa 3 vueltas antes que tu oponente!
+🎯 Sistema de Niveles:
+  Nivel 1: Oponente LENTO (35% velocidad)
+  Nivel 2: Oponente MEDIO (50% velocidad)
+  Nivel 3: Oponente RÁPIDO (65% velocidad)
+  
+  ¡Gana cada nivel para avanzar! Si pierdes, vuelves al Nivel 1.
+
+Objetivo: ¡Llega primero a la META en los 3 niveles! 🏆
 
 
 ═══════════════════════════════════════════════════════════════
   📚 DOCUMENTACIÓN
 ═══════════════════════════════════════════════════════════════
 
-  INDICE.md              - Índice de toda la documentación
-  INICIO_RAPIDO.md       - Guía de inicio rápido
-  README.md              - Documentación completa
-  INFORME_TECNICO.md     - Informe técnico detallado
-  RESUMEN.md             - Resumen del proyecto
-  PERSONALIZACION.md     - Guía de modificación
+  README.md              - Documentación completa del proyecto
+  LEEME.txt              - Este archivo (inicio rápido)
 
 
 ═══════════════════════════════════════════════════════════════
   ✅ CARACTERÍSTICAS IMPLEMENTADAS
 ═══════════════════════════════════════════════════════════════
 
-  ✅ Juego de carreras con vista superior
+  ✅ Juego de carreras tipo drag race (2 carriles)
   ✅ 3 modos de control (Manual, Difuso, Red Neuronal)
-  ✅ Control difuso con 20 reglas
-  ✅ Red neuronal entrenada con 5000 muestras
-  ✅ Sistema de sensores con 8 rayos
-  ✅ IA competitiva para el oponente
+  ✅ Sistema de 3 niveles progresivos
+  ✅ Grabación automática en modo manual
+  ✅ Control difuso optimizado para pista recta
+  ✅ Red neuronal con 16 sensores (cada 22.5°)
+  ✅ Entrenamiento con datos reales del jugador
+  ✅ Oponente CPU con velocidad variable
   ✅ Física realista del vehículo
   ✅ Detección de colisiones
-  ✅ Sistema de vueltas y checkpoints
+  ✅ Sistema de checkpoints y progreso
   ✅ Interfaz gráfica completa
   ✅ Documentación exhaustiva
 
@@ -90,16 +96,20 @@ Objetivo: ¡Completa 3 vueltas antes que tu oponente!
 ═══════════════════════════════════════════════════════════════
 
   ❌ "Red neuronal no entrenada"
-     → Ejecuta: python train_network.py
+     → Juega en modo manual para grabar datos
+     → Luego ejecuta: python train_network.py
 
   ❌ "No module named..."
      → Ejecuta: pip install -r requirements.txt
 
   ❌ Error con TensorFlow en Python 3.11+
-     → Usa Python 3.8-3.10
+     → Usa Python 3.8-3.11
+
+  ❌ El auto azul se sale del carril (modo difuso)
+     → Ya está optimizado para mantenerse en su carril
 
   ❌ El juego va lento
-     → Edita game.py, línea 23: self.fps = 30
+     → Edita game.py, línea 25: self.fps = 30
 
 
 ═══════════════════════════════════════════════════════════════
@@ -123,58 +133,63 @@ Objetivo: ¡Completa 3 vueltas antes que tu oponente!
   ├── 🐍 Código Python
   │   ├── main.py                    - Punto de entrada
   │   ├── game.py                    - Motor del juego
-  │   ├── car.py                     - Vehículo
-  │   ├── track.py                   - Pista
-  │   ├── fuzzy_controller.py        - Lógica Difusa
-  │   ├── neural_controller.py       - Red Neuronal
-  │   ├── opponent_controller.py     - Oponente
-  │   ├── data_generator.py          - Generación de datos
-  │   ├── train_network.py           - Entrenamiento
-  │   └── verify_install.py          - Verificación
+  │   ├── car.py                     - Vehículo con 16 sensores
+  │   ├── track.py                   - Pista recta de 2 carriles
+  │   ├── fuzzy_controller.py        - Control híbrido optimizado
+  │   ├── neural_controller.py       - Red neuronal (17 inputs)
+  │   ├── opponent_controller.py     - Oponente CPU simple
+  │   ├── data_collector.py          - Captura datos en manual
+  │   ├── data_generator.py          - Datos sintéticos
+  │   ├── train_network.py           - Entrenamiento con datos reales
+  │   └── verify_install.py          - Verificación de dependencias
   │
   ├── 📄 Documentación
-  │   ├── INDICE.md
-  │   ├── INICIO_RAPIDO.md
-  │   ├── README.md
-  │   ├── INFORME_TECNICO.md
-  │   ├── RESUMEN.md
-  │   └── PERSONALIZACION.md
+  │   ├── README.md                  - Documentación completa
+  │   └── LEEME.txt                  - Inicio rápido (este archivo)
   │
   ├── ⚙️ Configuración
-  │   ├── requirements.txt
-  │   └── .gitignore
+  │   ├── requirements.txt           - Dependencias Python
+  │   └── .gitignore                 - Exclusiones Git
   │
   └── 📁 Datos Generados
-      ├── data/training_data.pkl
-      └── models/neural_controller.h5
+      ├── training_data/*.csv        - Datos de conducción manual
+      ├── data/training_data.pkl     - Datos sintéticos (opcional)
+      └── models/neural_controller.h5 - Red neuronal entrenada
 
 
 ═══════════════════════════════════════════════════════════════
   🎓 PARA LA EVALUACIÓN
 ═══════════════════════════════════════════════════════════════
 
-  ✅ Videojuego funcional
-  ✅ Control difuso con reglas definidas
-  ✅ Red neuronal entrenada
-  ✅ Comparación de métodos
-  ✅ Código comentado
+  ✅ Videojuego funcional con 3 niveles
+  ✅ Control difuso híbrido optimizado
+  ✅ Red neuronal con datos reales del jugador
+  ✅ Sistema de captura automática de datos
+  ✅ Comparación de 3 métodos de control
+  ✅ Código limpio y comentado
   ✅ Documentación completa
 
   Archivos principales a revisar:
-    1. README.md - Visión general
-    2. INFORME_TECNICO.md - Análisis profundo
-    3. fuzzy_controller.py - Implementación difuso
-    4. neural_controller.py - Implementación red neuronal
-    5. models/ - Gráficas de entrenamiento
+    1. README.md - Documentación completa
+    2. fuzzy_controller.py - Control híbrido
+    3. neural_controller.py - Red neuronal
+    4. data_collector.py - Captura de datos
+    5. training_data/ - Datos de conducción manual
+    6. models/ - Modelo entrenado
 
 
 ═══════════════════════════════════════════════════════════════
-  🚀 INICIO RÁPIDO EN 3 PASOS
+  🚀 INICIO RÁPIDO EN 2 PASOS
 ═══════════════════════════════════════════════════════════════
 
   Paso 1: pip install -r requirements.txt
-  Paso 2: python train_network.py
-  Paso 3: python main.py
+  Paso 2: python main.py
+
+  📝 Flujo completo con entrenamiento:
+  1. Juega en modo MANUAL (tecla [1])
+  2. Completa carreras → Se graban automáticamente
+  3. python train_network.py → Entrena con tus datos
+  4. Juega en modo NEURAL (tecla [3]) → ¡Usa tu estilo!
 
   ¡Disfruta el juego! 🏁
 
@@ -183,10 +198,10 @@ Objetivo: ¡Completa 3 vueltas antes que tu oponente!
   📞 MÁS INFORMACIÓN
 ═══════════════════════════════════════════════════════════════
 
-  Para más detalles, consulta:
-    - INDICE.md (para navegar la documentación)
-    - README.md (documentación principal)
-    - INICIO_RAPIDO.md (guía de inicio)
+  Para más detalles, consulta README.md
+
+  🔗 Repositorio GitHub:
+    https://github.com/GerardoEsparza529/RaceCarGame
 
 
 ═══════════════════════════════════════════════════════════════

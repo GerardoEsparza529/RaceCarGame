@@ -6,7 +6,7 @@ import math
 import numpy as np
 
 class Car:
-    def __init__(self, x, y, color, is_player=True):
+    def __init__(self, x, y, color, is_player=True, image_path=None):
         """
         Inicializa un auto
         
@@ -15,6 +15,7 @@ class Car:
             y: Posición inicial en Y
             color: Color del auto (tuple RGB)
             is_player: Si es el auto del jugador o el oponente
+            image_path: Ruta opcional a una imagen PNG/JPG del carro
         """
         self.x = x
         self.y = y
@@ -24,6 +25,20 @@ class Car:
         # Dimensiones del auto
         self.width = 40
         self.height = 60
+        
+        # Cargar imagen si se proporciona
+        self.car_image = None
+        self.use_image = False
+        if image_path:
+            try:
+                self.car_image = pygame.image.load(image_path).convert_alpha()
+                # Escalar imagen al tamaño del auto
+                self.car_image = pygame.transform.scale(self.car_image, (self.width, self.height))
+                self.use_image = True
+            except (pygame.error, FileNotFoundError) as e:
+                print(f"No se pudo cargar la imagen del carro: {e}")
+                print("Se usará el dibujo por defecto.")
+                self.use_image = False
         
         # Física del auto
         self.angle = 0  # Ángulo en grados (0 = arriba, 90 = derecha, 180 = abajo, 270 = izquierda)
@@ -164,23 +179,76 @@ class Car:
     
     def draw(self, screen):
         """Dibuja el auto en la pantalla"""
-        # Crear superficie para el auto
-        car_surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
-        
-        # Dibujar rectángulo del auto
-        pygame.draw.rect(car_surface, self.color, (0, 0, self.width, self.height))
-        pygame.draw.rect(car_surface, (0, 0, 0), (0, 0, self.width, self.height), 2)
-        
-        # Indicador de dirección (línea frontal)
-        pygame.draw.rect(car_surface, (255, 255, 255), 
-                        (self.width//2 - 3, 0, 6, 15))
-        
-        # Rotar el auto
-        rotated = pygame.transform.rotate(car_surface, -self.angle)
-        rect = rotated.get_rect(center=(self.x, self.y))
-        
-        # Dibujar en pantalla
-        screen.blit(rotated, rect.topleft)
+        if self.use_image and self.car_image:
+            # Usar imagen cargada
+            rotated = pygame.transform.rotate(self.car_image, -self.angle)
+            rect = rotated.get_rect(center=(self.x, self.y))
+            screen.blit(rotated, rect.topleft)
+        else:
+            # Dibujar forma del carro por defecto
+            car_surface = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
+            
+            # Colores para detalles
+            dark_color = tuple(max(0, c - 50) for c in self.color)
+            light_color = tuple(min(255, c + 30) for c in self.color)
+            
+            # Cuerpo principal del auto (forma más aerodinámica)
+            body_points = [
+                (self.width//2, 0),  # Frente puntiagudo
+                (self.width - 5, 10),  # Lateral derecho superior
+                (self.width, self.height//2),  # Lateral derecho medio
+                (self.width - 5, self.height - 10),  # Lateral derecho inferior
+                (self.width//2, self.height),  # Parte trasera
+                (5, self.height - 10),  # Lateral izquierdo inferior
+                (0, self.height//2),  # Lateral izquierdo medio
+                (5, 10)  # Lateral izquierdo superior
+            ]
+            pygame.draw.polygon(car_surface, self.color, body_points)
+            pygame.draw.polygon(car_surface, (0, 0, 0), body_points, 2)
+            
+            # Parabrisas delantero
+            windshield_points = [
+                (self.width//2, 8),
+                (self.width - 10, 18),
+                (self.width - 10, 28),
+                (10, 28),
+                (10, 18)
+            ]
+            pygame.draw.polygon(car_surface, (100, 150, 200), windshield_points)
+            pygame.draw.polygon(car_surface, (0, 0, 0), windshield_points, 1)
+            
+            # Ventana trasera
+            rear_window_points = [
+                (self.width//2, self.height - 8),
+                (self.width - 10, self.height - 18),
+                (self.width - 10, self.height - 28),
+                (10, self.height - 28),
+                (10, self.height - 18)
+            ]
+            pygame.draw.polygon(car_surface, (100, 150, 200), rear_window_points)
+            pygame.draw.polygon(car_surface, (0, 0, 0), rear_window_points, 1)
+            
+            # Luces delanteras
+            pygame.draw.circle(car_surface, (255, 255, 150), (10, 5), 4)
+            pygame.draw.circle(car_surface, (255, 255, 150), (self.width - 10, 5), 4)
+            
+            # Luces traseras
+            pygame.draw.circle(car_surface, (255, 50, 50), (10, self.height - 5), 4)
+            pygame.draw.circle(car_surface, (255, 50, 50), (self.width - 10, self.height - 5), 4)
+            
+            # Líneas decorativas laterales
+            pygame.draw.line(car_surface, light_color, (8, 20), (8, self.height - 20), 2)
+            pygame.draw.line(car_surface, light_color, (self.width - 8, 20), (self.width - 8, self.height - 20), 2)
+            
+            # Spoiler trasero (pequeño detalle)
+            pygame.draw.rect(car_surface, dark_color, (5, self.height - 3, self.width - 10, 3))
+            
+            # Rotar el auto
+            rotated = pygame.transform.rotate(car_surface, -self.angle)
+            rect = rotated.get_rect(center=(self.x, self.y))
+            
+            # Dibujar en pantalla
+            screen.blit(rotated, rect.topleft)
         
     def draw_sensors(self, screen):
         """Dibuja los sensores del auto (para debugging)"""

@@ -85,12 +85,14 @@ class Game:
         player_pos = self.track.get_start_position(lane=0)
         opponent_pos = self.track.get_start_position(lane=1)
         
-        # Auto del jugador (lane 0)
-        self.player_car = Car(player_pos[0], player_pos[1], self.COLOR_PLAYER, is_player=True)
+        # Auto del jugador (lane 0) - con imagen
+        self.player_car = Car(player_pos[0], player_pos[1], self.COLOR_PLAYER, 
+                             is_player=True, image_path="images/car_player.png")
         self.player_car.angle = player_pos[2]
         
-        # Auto oponente (lane 1)
-        self.opponent_car = Car(opponent_pos[0], opponent_pos[1], self.COLOR_OPPONENT, is_player=False)
+        # Auto oponente (lane 1) - con imagen
+        self.opponent_car = Car(opponent_pos[0], opponent_pos[1], self.COLOR_OPPONENT, 
+                               is_player=False, image_path="images/car_opponent.png")
         self.opponent_car.angle = opponent_pos[2]
         
         # Inicializar controladores si es necesario

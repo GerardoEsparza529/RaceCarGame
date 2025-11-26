@@ -1,0 +1,200 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║        🏎️  CARRERA DE AUTOS CON INTELIGENCIA ARTIFICIAL      ║
+║                                                              ║
+║              Proyecto de Control Inteligente                 ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+
+═══════════════════════════════════════════════════════════════
+  📋 INSTALACIÓN RÁPIDA
+═══════════════════════════════════════════════════════════════
+
+1️⃣  Instalar dependencias:
+    
+    pip install -r requirements.txt
+
+
+2️⃣  Entrenar la red neuronal:
+    
+    python train_network.py
+
+
+3️⃣  Ejecutar el juego:
+    
+    python main.py
+
+
+═══════════════════════════════════════════════════════════════
+  🎮 CÓMO JUGAR
+═══════════════════════════════════════════════════════════════
+
+En el menú principal:
+
+  [1] - Modo MANUAL (controlas con flechas del teclado)
+  [2] - Modo DIFUSO (IA con lógica fuzzy)
+  [3] - Modo RED NEURONAL (IA con deep learning)
+  
+  [ESC] - Salir
+
+
+Durante la carrera:
+
+  Modo Manual:
+    ↑ - Acelerar
+    ↓ - Frenar
+    ← - Izquierda
+    → - Derecha
+
+  Todos los modos:
+    [S] - Mostrar sensores
+    [R] - Reiniciar
+    [ESC] - Menú
+
+
+Objetivo: ¡Completa 3 vueltas antes que tu oponente!
+
+
+═══════════════════════════════════════════════════════════════
+  📚 DOCUMENTACIÓN
+═══════════════════════════════════════════════════════════════
+
+  INDICE.md              - Índice de toda la documentación
+  INICIO_RAPIDO.md       - Guía de inicio rápido
+  README.md              - Documentación completa
+  INFORME_TECNICO.md     - Informe técnico detallado
+  RESUMEN.md             - Resumen del proyecto
+  PERSONALIZACION.md     - Guía de modificación
+
+
+═══════════════════════════════════════════════════════════════
+  ✅ CARACTERÍSTICAS IMPLEMENTADAS
+═══════════════════════════════════════════════════════════════
+
+  ✅ Juego de carreras con vista superior
+  ✅ 3 modos de control (Manual, Difuso, Red Neuronal)
+  ✅ Control difuso con 20 reglas
+  ✅ Red neuronal entrenada con 5000 muestras
+  ✅ Sistema de sensores con 8 rayos
+  ✅ IA competitiva para el oponente
+  ✅ Física realista del vehículo
+  ✅ Detección de colisiones
+  ✅ Sistema de vueltas y checkpoints
+  ✅ Interfaz gráfica completa
+  ✅ Documentación exhaustiva
+
+
+═══════════════════════════════════════════════════════════════
+  🔧 SOLUCIÓN DE PROBLEMAS
+═══════════════════════════════════════════════════════════════
+
+  ❌ "Red neuronal no entrenada"
+     → Ejecuta: python train_network.py
+
+  ❌ "No module named..."
+     → Ejecuta: pip install -r requirements.txt
+
+  ❌ Error con TensorFlow en Python 3.11+
+     → Usa Python 3.8-3.10
+
+  ❌ El juego va lento
+     → Edita game.py, línea 23: self.fps = 30
+
+
+═══════════════════════════════════════════════════════════════
+  📊 TECNOLOGÍAS UTILIZADAS
+═══════════════════════════════════════════════════════════════
+
+  Python 3.8+            - Lenguaje de programación
+  Pygame 2.5.2           - Motor de juego
+  NumPy 1.24.3           - Cálculos numéricos
+  scikit-fuzzy 0.4.2     - Lógica difusa
+  TensorFlow 2.15.0      - Deep learning
+  Matplotlib 3.7.1       - Visualización
+
+
+═══════════════════════════════════════════════════════════════
+  📁 ESTRUCTURA DEL PROYECTO
+═══════════════════════════════════════════════════════════════
+
+  GameCedillo/
+  │
+  ├── 🐍 Código Python
+  │   ├── main.py                    - Punto de entrada
+  │   ├── game.py                    - Motor del juego
+  │   ├── car.py                     - Vehículo
+  │   ├── track.py                   - Pista
+  │   ├── fuzzy_controller.py        - Lógica Difusa
+  │   ├── neural_controller.py       - Red Neuronal
+  │   ├── opponent_controller.py     - Oponente
+  │   ├── data_generator.py          - Generación de datos
+  │   ├── train_network.py           - Entrenamiento
+  │   └── verify_install.py          - Verificación
+  │
+  ├── 📄 Documentación
+  │   ├── INDICE.md
+  │   ├── INICIO_RAPIDO.md
+  │   ├── README.md
+  │   ├── INFORME_TECNICO.md
+  │   ├── RESUMEN.md
+  │   └── PERSONALIZACION.md
+  │
+  ├── ⚙️ Configuración
+  │   ├── requirements.txt
+  │   └── .gitignore
+  │
+  └── 📁 Datos Generados
+      ├── data/training_data.pkl
+      └── models/neural_controller.h5
+
+
+═══════════════════════════════════════════════════════════════
+  🎓 PARA LA EVALUACIÓN
+═══════════════════════════════════════════════════════════════
+
+  ✅ Videojuego funcional
+  ✅ Control difuso con reglas definidas
+  ✅ Red neuronal entrenada
+  ✅ Comparación de métodos
+  ✅ Código comentado
+  ✅ Documentación completa
+
+  Archivos principales a revisar:
+    1. README.md - Visión general
+    2. INFORME_TECNICO.md - Análisis profundo
+    3. fuzzy_controller.py - Implementación difuso
+    4. neural_controller.py - Implementación red neuronal
+    5. models/ - Gráficas de entrenamiento
+
+
+═══════════════════════════════════════════════════════════════
+  🚀 INICIO RÁPIDO EN 3 PASOS
+═══════════════════════════════════════════════════════════════
+
+  Paso 1: pip install -r requirements.txt
+  Paso 2: python train_network.py
+  Paso 3: python main.py
+
+  ¡Disfruta el juego! 🏁
+
+
+═══════════════════════════════════════════════════════════════
+  📞 MÁS INFORMACIÓN
+═══════════════════════════════════════════════════════════════
+
+  Para más detalles, consulta:
+    - INDICE.md (para navegar la documentación)
+    - README.md (documentación principal)
+    - INICIO_RAPIDO.md (guía de inicio)
+
+
+═══════════════════════════════════════════════════════════════
+
+  Proyecto: Carrera de Autos con IA
+  Materia: Control Inteligente
+  Fecha: Noviembre 2025
+
+  © Proyecto Académico
+
+═══════════════════════════════════════════════════════════════
